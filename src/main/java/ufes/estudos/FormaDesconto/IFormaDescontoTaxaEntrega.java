@@ -1,4 +1,9 @@
+package ufes.estudos.FormaDesconto;
+
+import ufes.estudos.CupomDescontoEntrega.CupomDescontoEntrega;
+import ufes.estudos.Pedido;
+
 interface IFormaDescontoTaxaEntrega{
-    public void calcularDesconto(pedido);
-    public boolean seAplica(pedido);
+    public CupomDescontoEntrega calcularDesconto(Pedido pedido);
+    public boolean seAplica(Pedido pedido);
 }
