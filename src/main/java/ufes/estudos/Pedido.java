@@ -2,20 +2,23 @@ package ufes.estudos;
 
 import ufes.estudos.CupomDescontoEntrega.CupomDescontoEntrega;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Pedido {
     private final double taxaEntrega = 10.0;
+
+
     private final Cliente cliente;
-    private final Date data;
+    private final LocalDate data;
     private double valorPedido;
     private final List<Item> itens = new ArrayList<>();
-    private final double descontoConcedido = 0.0;
+    private double descontoConcedido = 0.0;
     private final List<CupomDescontoEntrega> cupomDescontoEntrega = new ArrayList<>();
 
-    public Pedido(Date data, Cliente cliente) {
+    public Pedido(LocalDate data, Cliente cliente) {
         this.data = data;
         this.cliente = cliente;
     }
@@ -41,7 +44,16 @@ public class Pedido {
     }
 
     public void aplicaDesconto(){
+        for (var cupom : cupomDescontoEntrega){
+            if (descontoConcedido > 10){
+                break;
+            }
+            descontoConcedido += cupom.getValorDesconto();
+        }
 
+        if( descontoConcedido > 10){
+            descontoConcedido = 10;
+        }
     }
 
     public double getDescontoConcedido() {

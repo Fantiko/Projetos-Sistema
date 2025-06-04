@@ -7,20 +7,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FormaDescontoPorTipoCliente implements IFormaDescontoTaxaEntrega{
-    private Map<String, Double> DescontoPorTipoCliente = new HashMap<>();
+    private Map<String, Double> descontoPorTipoCliente = new HashMap<>();
 
 
-    public FormaDescontoPorTipoCliente(Map<String, Double> descontoPorTipoCliente) {
-        DescontoPorTipoCliente = descontoPorTipoCliente;
+    public FormaDescontoPorTipoCliente() {
+        descontoPorTipoCliente.put("Ouro", 3.0);
+        descontoPorTipoCliente.put("Prata", 2.0);
+        descontoPorTipoCliente.put("Bronze", 1.0);
     }
 
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
-        return null;
+        var tipoCliente = pedido.getCliente().getTipo();
+
+        return new CupomDescontoEntrega("CupomDescontoTipoCliebnte", this.descontoPorTipoCliente.get(tipoCliente));
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
-        return false;
+        var resp = this.descontoPorTipoCliente.get(pedido.getCliente().getTipo());
+        return resp != null;
     }
 }

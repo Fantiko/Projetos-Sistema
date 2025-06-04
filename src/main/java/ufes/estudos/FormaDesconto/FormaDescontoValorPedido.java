@@ -13,12 +13,17 @@ public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega{
 
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
+        var descontos = pedido.getDescontoConcedido();
+
+        if (descontos < valorLimitePedido){
+            return new CupomDescontoEntrega("Cupom desconto Valor Pedido", valorDesconto);
+        }
 
         return null;
     }
 
     @Override
     public boolean seAplica(Pedido pedido) {
-        return false;
+        return pedido.getDescontoConcedido() < valorLimitePedido;
     }
 }
