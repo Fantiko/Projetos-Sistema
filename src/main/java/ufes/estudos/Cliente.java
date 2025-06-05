@@ -47,13 +47,12 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nome='" + nome + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", fidelidade=" + fidelidade +
-                ", logradouro='" + logradouro + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", cidade='" + cidade + '\'' +
-                '}';
+        return "\nCliente: " +
+                "\nNome: '" + nome + '\'' +
+                "\nTipo: '" + tipo + '\'' +
+                "\nFidelidade: " + fidelidade +
+                "\nLogradouro: '" + logradouro + '\'' +
+                "\nBairro: '" + bairro + '\'' +
+                "\nCidade: '" + cidade + '\'';
     }
 }

@@ -1,7 +1,7 @@
 package ufes.estudos;
 
 public class Item {
-    private String nome;
+    private final String nome;
     private int quantidade;
     private double valorUnitario;
     private String tipo;
@@ -23,11 +23,10 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "nome='" + nome + '\'' +
-                ", quantidade=" + quantidade +
-                ", valorUnitario=" + valorUnitario +
-                ", tipo='" + tipo + '\'' +
-                '}';
+        return "\nItem:" +
+                "\nNome: '" + nome + '\'' +
+                "\nQuantidade: " + quantidade +
+                "\nValor Unitario:" + valorUnitario +
+                "\nTipo: '" + tipo + '\'' + "\n";
     }
 }
