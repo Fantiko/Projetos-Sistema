@@ -66,14 +66,12 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" +
-                "taxaEntrega=" + taxaEntrega +
-                ", cliente=" + cliente +
-                ", data=" + data +
-                ", valorPedido=" + valorPedido +
-                ", itens=" + itens +
-                ", descontoConcedido=" + descontoConcedido +
-                ", cupomDescontoEntrega=" + cupomDescontoEntrega +
-                '}';
+        return "\nPedido de " + cliente.getNome() +
+                "\nData do Pedido: " + data +
+                "\nItens do Pedido:\n" + itens +
+                "\nValor do Pedido=" + valorPedido +
+                "\nDesconto Concedido=" + descontoConcedido +
+                "\nTaxa de Entrega=" + taxaEntrega +
+                "\nCupom Desconto Entrega=" + cupomDescontoEntrega;
     }
 }
