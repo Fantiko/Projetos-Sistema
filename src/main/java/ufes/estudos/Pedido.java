@@ -18,6 +18,8 @@ public class Pedido {
     private double descontoConcedido = 0.0;
     private final List<CupomDescontoEntrega> cupomDescontoEntrega = new ArrayList<>();
 
+    private double pedidoMaisEntrega = 0.0;
+
     public Pedido(LocalDate data, Cliente cliente) {
         this.data = data;
         this.cliente = cliente;
@@ -73,5 +75,13 @@ public class Pedido {
                 "\nDesconto Concedido=" + descontoConcedido +
                 "\nTaxa de Entrega=" + taxaEntrega +
                 "\nCupom Desconto Entrega=" + cupomDescontoEntrega;
+    }
+
+    public double getPedidoMaisEntrega() {
+        return pedidoMaisEntrega;
+    }
+
+    public void calculaPedidoMaisEntrega(double pedidoMaisEntrega) {
+        this.pedidoMaisEntrega = pedidoMaisEntrega;
     }
 }
