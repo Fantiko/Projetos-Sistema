@@ -3,13 +3,10 @@ package ufes.estudos;
 import ufes.estudos.CupomDescontoEntrega.CupomDescontoEntrega;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Pedido {
     private final double taxaEntrega = 10.0;
-
 
     private final Cliente cliente;
     private final LocalDate data;
@@ -17,6 +14,9 @@ public class Pedido {
     private final List<Item> itens = new ArrayList<>();
     private double descontoConcedido = 0.0;
     private final List<CupomDescontoEntrega> cupomDescontoEntrega = new ArrayList<>();
+
+    //um cupom ativo inicializado
+    private Map.Entry<String, Double> cumpomAtivo = new AbstractMap.SimpleEntry<>("", 0.0);
 
     private double pedidoMaisEntrega = 0.0;
 
@@ -71,17 +71,49 @@ public class Pedido {
         return "\nPedido de " + cliente.getNome() +
                 "\nData do Pedido: " + data +
                 "\nItens do Pedido:\n" + itens +
-                "\nValor do Pedido=" + valorPedido +
-                "\nDesconto Concedido=" + descontoConcedido +
-                "\nTaxa de Entrega=" + taxaEntrega +
-                "\nCupom Desconto Entrega=" + cupomDescontoEntrega;
+                "\nValor do Pedido: " + String.format("%.2f", valorPedido) +
+                "\nDesconto Concedido: " + descontoConcedido +
+                "\nTaxa de Entrega: " + taxaEntrega +
+                "\nCupom Desconto Entrega: " + cupomDescontoEntrega;
     }
 
     public double getPedidoMaisEntrega() {
         return pedidoMaisEntrega;
     }
 
-    public void calculaPedidoMaisEntrega(double pedidoMaisEntrega) {
-        this.pedidoMaisEntrega = pedidoMaisEntrega;
+    public double calculaPedidoMaisEntrega() {
+        calculaTotal();
+        return pedidoMaisEntrega = valorPedido + taxaEntrega;
     }
+
+    public void calculaTotal(){
+        valorPedido = 0.0;
+        for(Item item: itens) {
+            valorPedido += (item.getValorUnitario() * item.getQuantidade());
+        }
+    }
+
+    public Map.Entry<String, Double> getCumpomAtivo() {
+        return cumpomAtivo;
+    }
+
+    public void setCumpomAtivo(Map.Entry<String, Double> cumpomAtivo) {
+        this.cumpomAtivo = cumpomAtivo;
+    }
+
+    public void setValorPedido(double valorPedido) {
+        this.valorPedido = valorPedido;
+    }
+
+    public void tentarAtualizarCupom(Map.Entry<String, Double> novoCupom) {
+        if (novoCupom == null || novoCupom.getKey().isEmpty()) {
+            return;
+        }
+
+        if (this.cumpomAtivo == null || novoCupom.getValue() > this.cumpomAtivo.getValue()) {
+            this.cumpomAtivo = novoCupom;
+        }
+    }
+
+
 }

@@ -1,13 +1,13 @@
 package ufes.estudos.FormaDesconto;
 
-import ufes.estudos.CupomDescontoEntrega.CupomDescontoEntrega;
 import ufes.estudos.Pedido;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MetodoDescontoValorFinal implements IFormaDescontoTaxaEntrega{
+public class MetodoDescontoValorFinal {
     Map<String, Double> descontos = new HashMap<>();
+    Double descontoAtivo;
 
     public MetodoDescontoValorFinal(){
         descontos.put("DESC10", 10.0);
@@ -19,16 +19,22 @@ public class MetodoDescontoValorFinal implements IFormaDescontoTaxaEntrega{
         descontos.put("RELAMPAGO50", 50.0);
         descontos.put("PROMO10", 10.0);
     }
-    //fazer um hashmap com os nomes dos cupons e seus valores
-    @Override
-    public CupomDescontoEntrega calcularDesconto(Pedido pedido) {
-        pedido.cupomativo
-        Double novoValor = pedido.getValorPedido() *
 
-        return null;
+    //FALTANDO APENAS VERIFICAR O MAIOR DESCONTO...
+    public void calcularDescontoNoTotal(Pedido pedido) {
+        if (pedido.getCumpomAtivo() == null || pedido.getCumpomAtivo().getKey().isEmpty()){
+            System.out.println("Nenhum Cupom Aplicado!");
+            return;
+        }
+
+        double valorBase = pedido.calculaPedidoMaisEntrega();
+        double desconto = pedido.getCumpomAtivo().getValue();
+        double valorComDesconto = valorBase * (1.0 - (desconto / 100.0));
+
+        pedido.setValorPedido(valorComDesconto);
     }
 
-    @Override
+
     public boolean seAplica(Pedido pedido) {
         return pedido.getItens() != null;
     }

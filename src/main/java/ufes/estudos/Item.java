@@ -29,4 +29,8 @@ public class Item {
                 "\nValor Unitario:" + valorUnitario +
                 "\nTipo: '" + tipo + '\'' + "\n";
     }
+
+    public int getQuantidade(){
+        return this.quantidade;
+    }
 }
