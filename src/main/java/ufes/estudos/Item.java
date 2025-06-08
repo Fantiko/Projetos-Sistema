@@ -2,9 +2,9 @@ package ufes.estudos;
 
 public class Item {
     private final String nome;
-    private int quantidade;
-    private double valorUnitario;
-    private String tipo;
+    private final int quantidade;
+    private final double valorUnitario;
+    private final String tipo;
 
     public Item(String tipo, double valorUnitario, int quantidade, String nome) {
         this.tipo = tipo;
@@ -28,5 +28,9 @@ public class Item {
                 "\nQuantidade: " + quantidade +
                 "\nValor Unitario:" + valorUnitario +
                 "\nTipo: '" + tipo + '\'' + "\n";
+    }
+
+    public int getQuantidade(){
+        return this.quantidade;
     }
 }
