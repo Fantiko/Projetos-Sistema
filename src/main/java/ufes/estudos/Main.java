@@ -45,6 +45,7 @@ public class Main {
         //aplicando desconto no pedido do cliente
         pedido_alberto.aplicaDesconto();
 
+
         //criando método de desconto do valor final (CUPOM DE DESCONTO APLICADO NO FINAL DA COMPRA)
         MetodoDescontoValorFinal cupomAplicado = new MetodoDescontoValorFinal();
         Map.Entry<String, Double> cupom = new AbstractMap.SimpleEntry<>("DESC20", 20.0);
